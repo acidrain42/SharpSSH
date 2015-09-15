@@ -102,14 +102,14 @@ namespace sharpSshTest.sharpssh_samples
 
 		static ConsoleProgressBar progressBar;
 
-		private static void sshCp_OnTransferStart(string src, string dst, int transferredBytes, int totalBytes, string message)
+		private static void sshCp_OnTransferStart(string src, string dst, long transferredBytes, long totalBytes, string message)
 		{
 			Console.WriteLine();
 			progressBar = new ConsoleProgressBar();
 			progressBar.Update(transferredBytes, totalBytes, message);
 		}
 
-		private static void sshCp_OnTransferProgress(string src, string dst, int transferredBytes, int totalBytes, string message)
+		private static void sshCp_OnTransferProgress(string src, string dst, long transferredBytes, long totalBytes, string message)
 		{
 			if(progressBar!=null)
 			{
@@ -117,7 +117,7 @@ namespace sharpSshTest.sharpssh_samples
 			}
 		}
 
-		private static void sshCp_OnTransferEnd(string src, string dst, int transferredBytes, int totalBytes, string message)
+		private static void sshCp_OnTransferEnd(string src, string dst, long transferredBytes, long totalBytes, string message)
 		{
 			if(progressBar!=null)
 			{

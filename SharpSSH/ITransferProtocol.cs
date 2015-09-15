@@ -58,5 +58,5 @@ namespace Tamir.SharpSsh
 		event FileTransferEvent OnTransferProgress;
 	}
 
-	public delegate void FileTransferEvent(string src, string dst, int transferredBytes, int totalBytes, string message);
+	public delegate void FileTransferEvent(string src, string dst, long transferredBytes, long totalBytes, string message);
 }

@@ -191,13 +191,13 @@ namespace Tamir.SharpSsh
 				{
 					note = "Uploading " + System.IO.Path.GetFileName( src ) + "...";
 				}
-				m_sftp.SendStartMessage(src, dest, (int)total, note);
+				m_sftp.SendStartMessage(src, dest, total, note);
 			}
 			public override bool count(long c)
 			{
 				this.transferred += c;
 				string note = ("Transfering... [Elapsed time: " + elapsed + "]");
-				m_sftp.SendProgressMessage(src, dest, (int)transferred, (int)total, note);
+				m_sftp.SendProgressMessage(src, dest, transferred, total, note);
 				return !m_sftp.cancelled;
 			}
 			public override void end()
@@ -205,7 +205,7 @@ namespace Tamir.SharpSsh
 				timer.Stop();
 				timer.Dispose();
 				string note = ("Done in " + elapsed + " seconds!");
-				m_sftp.SendEndMessage(src, dest, (int)transferred, (int)total, note);
+				m_sftp.SendEndMessage(src, dest, transferred, total, note);
 				transferred = 0;
 				total = 0;
 				elapsed = -1;

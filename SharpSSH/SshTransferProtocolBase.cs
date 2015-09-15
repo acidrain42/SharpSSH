@@ -74,7 +74,7 @@ namespace Tamir.SharpSsh
 		/// <param name="dst">Transfer destination</param>
 		/// <param name="totalBytes">Total bytes to transfer</param>
 		/// <param name="msg">A transfer message</param>
-		protected void SendStartMessage(string src, string dst, int totalBytes, string msg)
+		protected void SendStartMessage(string src, string dst, long totalBytes, string msg)
 		{
 			if (OnTransferStart != null)
 				OnTransferStart(src, dst, 0, totalBytes, msg);
@@ -88,7 +88,7 @@ namespace Tamir.SharpSsh
 		/// <param name="transferredBytes">Transferred Bytes</param>
 		/// <param name="totalBytes">Total bytes to transfer</param>
 		/// <param name="msg">A transfer message</param>
-		protected void SendEndMessage(string src, string dst, int transferredBytes, int totalBytes, string msg)
+		protected void SendEndMessage(string src, string dst, long transferredBytes, long totalBytes, string msg)
 		{
 			if (OnTransferEnd != null)
 				OnTransferEnd(src, dst, transferredBytes, totalBytes, msg);
@@ -102,7 +102,7 @@ namespace Tamir.SharpSsh
 		/// <param name="transferredBytes">Transferred Bytes</param>
 		/// <param name="totalBytes">Total bytes to transfer</param>
 		/// <param name="msg">A transfer message</param>
-		protected void SendProgressMessage(string src, string dst, int transferredBytes, int totalBytes, string msg)
+		protected void SendProgressMessage(string src, string dst, long transferredBytes, long totalBytes, string msg)
 		{
 			if (OnTransferProgress != null)
 			{

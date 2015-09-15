@@ -91,7 +91,7 @@ namespace sharpSshTest
 		/// <param name="transferredBytes">The bytes already copied</param>
 		/// <param name="totalBytes">The total bytes to be copied</param>
 		/// <param name="message">A progress message</param>
-		public void Update(int transferredBytes, int totalBytes, string message)
+		public void Update(long transferredBytes, long totalBytes, string message)
 		{
 			COORD cur = this.GetCursorPos();
 			this.SetCursorPos(barCoord.X, barCoord.Y);

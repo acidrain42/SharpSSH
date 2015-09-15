@@ -244,7 +244,7 @@ namespace Tamir.SharpSsh
 			Channel channel=null;
 			Stream server = null;
 			m_cancelled=false;
-			int filesize=0;
+			long filesize=0;
 			String filename=null;
 			string cmd = null;
 
@@ -422,10 +422,10 @@ namespace Tamir.SharpSsh
 		/// <param name="dst">The remote destination path</param>
 		protected void SCP_SendFile(Stream server, string src, string dst)
 		{
-			int filesize = 0;
-			int copied = 0;
+			long filesize = 0;
+			long copied = 0;
 
-			filesize=(int)(new FileInfo(src)).Length;				
+			filesize=(new FileInfo(src)).Length;
 
 			byte[] tmp=new byte[1];
 
@@ -478,19 +478,19 @@ namespace Tamir.SharpSsh
 		/// <param name="server">A connected server I/O stream</param>
 		/// <param name="rfile">The remote file to copy</param>
 		/// <param name="lfile">The local destination path</param>
-		protected void SCP_ReceiveFile(Stream server, string rfile, string lfile, int size)
+		protected void SCP_ReceiveFile(Stream server, string rfile, string lfile, long size)
 		{
-			int copied = 0;
+			long copied = 0;
 			SendStartMessage(rfile, lfile, size, "Connected, starting transfer.");
 			// read a content of lfile
 			FileStream fos=File.OpenWrite(lfile);
 			int foo;
-			int filesize=size;
+			long filesize=size;
 			byte[] buf = new byte[1024];
 			while(!m_cancelled)
 			{
 				if(buf.Length<filesize) foo=buf.Length;
-				else foo=filesize;
+				else foo=(int)filesize;
 				int len=server.Read(buf, 0, foo);
 				copied += len;
 				fos.Write(buf, 0, foo);
